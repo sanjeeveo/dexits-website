@@ -58,8 +58,17 @@ dexits-website/
     └── *.html                  ← the posts
 ```
 
-## Deploying
+## Deploying (current setup — live since Jul 12, 2026)
 
-The site is fully static — host it anywhere (Render static site, Netlify,
-Vercel, Cloudflare Pages, or your current host). Upload the whole
-`dexits-website` folder as the web root. No build step needed.
+dexits.com is served by **Cloudflare Pages** (project `dexits-com`,
+direct-upload mode). DNS is on Cloudflare; domain registered at GoDaddy.
+Source of truth: this folder + GitHub `sanjeeveo/dexits-website`.
+Staging mirror: https://dexits-website.onrender.com (Render, DEXITS project).
+
+**To publish changes (after editing files here):**
+1. Commit + push: `cd ~/DEXITS/DEXITS/dexits-website && git add -A && git commit -m "update" && git push`
+2. Re-upload to Cloudflare Pages: dash.cloudflare.com → Workers & Pages →
+   dexits-com → Create deployment → upload this folder (or the zip).
+
+**Easiest:** just ask Claude — "publish the site changes" — and both steps
+happen for you.
