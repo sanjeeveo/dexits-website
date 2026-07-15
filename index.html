@@ -744,6 +744,45 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:rgba(6,13
 </main>
 
 <!-- ================= FOOTER ================= -->
+<!-- DEXITS-BLOG-STRIP:START -->
+<section id="dexits-blog-strip" style="background:#040807;padding:72px 0;border-top:1px solid rgba(40,224,160,0.13);font-family:'Inter',system-ui,sans-serif">
+  <style>
+    #dexits-blog-strip .dbs-wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+    #dexits-blog-strip .dbs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+    #dexits-blog-strip .dbs-label{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:#7ef5c8;font-weight:700}
+    #dexits-blog-strip h2{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(26px,3.4vw,38px);letter-spacing:-1px;color:#ecf5f0;margin:8px 0 0;font-weight:700}
+    #dexits-blog-strip .dbs-sub{color:#a3bcb0;font-size:15px;margin-top:8px;max-width:520px}
+    #dexits-blog-strip .dbs-all{color:#73ebc1;font-weight:600;font-size:14.5px;white-space:nowrap;text-decoration:none}
+    #dexits-blog-strip .dbs-row{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 0 18px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(40,224,160,0.28) transparent}
+    #dexits-blog-strip .dbs-row::-webkit-scrollbar{height:8px}
+    #dexits-blog-strip .dbs-row::-webkit-scrollbar-thumb{background:rgba(40,224,160,0.28);border-radius:99px}
+    #dexits-blog-strip .dbs-card{scroll-snap-align:start;flex:0 0 320px;background:#131716;border:1px solid rgba(40,224,160,0.13);border-radius:18px;padding:26px;display:flex;flex-direction:column;transition:transform .3s,border-color .3s;color:#ecf5f0;text-decoration:none}
+    #dexits-blog-strip .dbs-card:hover{transform:translateY(-5px);border-color:rgba(40,224,160,0.28)}
+    #dexits-blog-strip .dbs-meta{font-size:12px;color:#7ef5c8;letter-spacing:.6px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+    #dexits-blog-strip .dbs-card h3{font-family:'Space Grotesk','Inter',sans-serif;font-size:19px;line-height:1.35;letter-spacing:-.3px;margin:0 0 10px;color:#ecf5f0}
+    #dexits-blog-strip .dbs-card p{color:#a3bcb0;font-size:13.5px;line-height:1.6;flex:1;margin:0}
+    #dexits-blog-strip .dbs-more{margin-top:16px;font-size:13.5px;color:#73ebc1;font-weight:600}
+    @media(max-width:720px){#dexits-blog-strip .dbs-card{flex-basis:80vw}}
+  </style>
+  <div class="dbs-wrap">
+    <div class="dbs-head">
+      <div>
+        <div class="dbs-label">From the Blog</div>
+        <h2>Exit smarter.</h2>
+        <p class="dbs-sub">Fresh guides on buying and selling shopify / online businesses — a new one every weekday.</p>
+      </div>
+      <a class="dbs-all" href="blog/index.html">View all articles →</a>
+    </div>
+    <div class="dbs-row" id="dbsRow"></div>
+  </div>
+  <script src="blog/posts.js"></script>
+  <script>(function(){var row=document.getElementById('dbsRow');var P=window.SITE_POSTS||window.DEXITS_POSTS||[];
+  if(!P.length){document.getElementById('dexits-blog-strip').style.display='none';return;}
+  P.slice(0,8).forEach(function(p){var a=document.createElement('a');a.className='dbs-card';a.href='blog/'+p.slug+'.html';
+  a.innerHTML='<div class="dbs-meta">'+p.tag+' · '+p.minutes+' min</div><h3>'+p.title+'</h3><p>'+p.description+'</p><span class="dbs-more">Read article →</span>';
+  row.appendChild(a);});})();</script>
+</section>
+<!-- DEXITS-BLOG-STRIP:END -->
 <footer>
   <div class="wrap">
     <div class="foot">
