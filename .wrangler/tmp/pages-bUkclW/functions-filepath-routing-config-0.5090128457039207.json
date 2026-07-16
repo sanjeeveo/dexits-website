@@ -1,0 +1,37 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/lead",
+      "mountPath": "/api",
+      "method": "OPTIONS",
+      "module": [
+        "api/lead.js:onRequestOptions"
+      ]
+    },
+    {
+      "routePath": "/api/lead",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/lead.js:onRequestPost"
+      ]
+    },
+    {
+      "routePath": "/api/track",
+      "mountPath": "/api",
+      "method": "OPTIONS",
+      "module": [
+        "api/track.js:onRequestOptions"
+      ]
+    },
+    {
+      "routePath": "/api/track",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/track.js:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get your instant store valuation | Dexits</title>
+<meta name="description" content="Connect where you are — valuing to sell, looking to buy, or just curious — and get a real, data-backed range.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog/blog.css">
+<style>:root{
+  --bg0:#040807;--bg1:#0c0f0e;--panel:#131716;
+  --line:rgba(40,224,160,0.13);--line-strong:rgba(40,224,160,0.28);
+  --em:#28e0a0;--em-bright:#7ef5c8;--em-soft:#73ebc1;--em-deep:#1ea878;
+  --ink:#ecf5f0;--mut:#a3bcb0;--dim:#68806f;
+  --glow:rgba(40,224,160,0.18);--cta-a:#060d0b;--cta-b:#0c0f0e;
+}
+.lf-wrap{max-width:520px;margin:0 auto;padding:150px 24px 90px}
+.lf-card{background:var(--panel);border:1px solid var(--line-strong);border-radius:22px;padding:40px 34px;box-shadow:0 0 60px var(--glow)}
+.lf-card h1{font-family:var(--font-disp);font-size:29px;letter-spacing:-.8px;margin:0 0 10px}
+.lf-card p.sub{color:var(--mut);font-size:15.5px;margin-bottom:26px}
+.lf-card label{display:block;font-size:13px;color:var(--em-bright);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin:0 0 16px}
+.lf-card input,.lf-card select{width:100%;margin-top:7px;background:var(--bg1);border:1px solid var(--line-strong);border-radius:11px;padding:13px 14px;color:var(--ink);font:15px var(--font-body);text-transform:none;letter-spacing:0}
+.lf-card input:focus,.lf-card select:focus{outline:none;border-color:var(--em)}
+.lf-card .btn{width:100%;justify-content:center;margin-top:8px;font-size:16px;padding:14px}
+.lf-fine{font-size:12px;color:var(--dim);text-align:center;margin-top:16px}
+.lf-ok{display:none;text-align:center}
+.lf-ok h1{color:var(--em-bright)}
+</style></head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="index.html">Dexits</a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="blog/index.html" style="color:var(--em-bright)">Blog</a>
+  </nav>
+  <a class="btn btn-primary" href="https://apps.shopify.com/dexits">Get Your Instant Valuation →</a>
+</div></header>
+<div class="lf-wrap">
+  <div class="lf-card" id="card">
+    <h1>Get your instant store valuation</h1>
+    <p class="sub">Connect where you are — valuing to sell, looking to buy, or just curious — and get a real, data-backed range.</p>
+    <form id="leadForm">
+      <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
+      <label>Shopify store URL<input type="text" name="url" placeholder="yourstore.myshopify.com"></label>
+      <label>I want to…<select name="intent"><option>Value my store to sell</option><option>Buy a store</option><option>Just exploring</option></select></label>
+      <button class="btn btn-primary" type="submit">Get My Valuation →</button>
+      <p class="lf-fine">No spam. Unsubscribe anytime.</p>
+    </form>
+  </div>
+  <div class="lf-card lf-ok" id="ok"><h1>Thanks — you're in ✓</h1><p class="sub">Done. Your valuation range is on its way.</p></div>
+</div>
+<script>(function(){var P={site:"dexits.com",category:"both",slug:"get-started",path:location.pathname};
+function send(t){try{var d=JSON.stringify(Object.assign({},P,{type:t}));(navigator.sendBeacon&&navigator.sendBeacon('/api/track',new Blob([d],{type:'application/json'})))||fetch('/api/track',{method:'POST',headers:{'content-type':'application/json'},body:d,keepalive:true});}catch(e){}}
+send('pageview');
+document.addEventListener('click',function(e){var a=e.target.closest('[data-cta],a.btn-primary,.dbs-card,.cta-box a');if(a)send('cta_click');},true);})();</script>
+<script>
+document.getElementById('leadForm').addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target,btn=f.querySelector('button');btn.textContent='Sending…';
+  var fd=new FormData(f),email=fd.get('email'),extra={};fd.forEach(function(v,k){if(k!=='email')extra[k]=v;});
+  fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({site:"dexits.com",category:"both",form_type:"valuation",email:email,extra:extra,path:location.pathname})})
+  .then(function(r){return r.json();}).then(function(j){
+    if(j.ok){document.getElementById('card').style.display='none';document.getElementById('ok').style.display='block';}
+    else{btn.textContent='Try again';alert(j.error||'Something went wrong');}
+  }).catch(function(){btn.textContent="Get My Valuation"+' →';alert('Network error — please retry');});
+});
+</script>
+</body></html>

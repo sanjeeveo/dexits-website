@@ -7,6 +7,14 @@
    ============================================================ */
 window.DEXITS_POSTS = [
   {
+    slug: "seller-discretionary-earnings-explained",
+    title: "Seller Discretionary Earnings Explained: How Buyers Value Your Store",
+    description: "Seller discretionary earnings explained for Shopify owners: what SDE is, how it differs from profit, which add-backs count, and why it sets your sale price.",
+    tag: "Valuation",
+    date: "2026-07-16",
+    minutes: 6
+  },
+  {
     slug: "shopify-store-valuation-multiples-2026",
     title: "Shopify Store Valuation Multiples in 2026: What Stores Actually Trade For",
     description: "Shopify store valuation multiples in 2026 sit at 2.2–4.5x SDE for most stores. See the real ranges buyers pay and what moves your multiple up.",

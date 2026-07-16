@@ -781,6 +781,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 44px;background:rgba(6,13
   P.slice(0,8).forEach(function(p){var a=document.createElement('a');a.className='dbs-card';a.href='blog/'+p.slug+'.html';
   a.innerHTML='<div class="dbs-meta">'+p.tag+' · '+p.minutes+' min</div><h3>'+p.title+'</h3><p>'+p.description+'</p><span class="dbs-more">Read article →</span>';
   row.appendChild(a);});})();</script>
+  <script>(function(){var P={site:"dexits.com",category:"both",slug:"home",path:location.pathname};
+function send(t){try{var d=JSON.stringify(Object.assign({},P,{type:t}));(navigator.sendBeacon&&navigator.sendBeacon('/api/track',new Blob([d],{type:'application/json'})))||fetch('/api/track',{method:'POST',headers:{'content-type':'application/json'},body:d,keepalive:true});}catch(e){}}
+send('pageview');
+document.addEventListener('click',function(e){var a=e.target.closest('[data-cta],a.btn-primary,.dbs-card,.cta-box a');if(a)send('cta_click');},true);})();</script>
 </section>
 <!-- DEXITS-BLOG-STRIP:END -->
 <footer>
