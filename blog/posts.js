@@ -7,6 +7,14 @@
    ============================================================ */
 window.DEXITS_POSTS = [
   {
+    slug: "shopify-store-valuation-multiples-2026",
+    title: "Shopify Store Valuation Multiples in 2026: What Stores Actually Trade For",
+    description: "Shopify store valuation multiples in 2026 sit at 2.2–4.5x SDE for most stores. See the real ranges buyers pay and what moves your multiple up.",
+    tag: "Valuation",
+    date: "2026-07-15",
+    minutes: 7
+  },
+  {
     slug: "how-much-is-my-shopify-store-worth",
     title: "How Much Is My Shopify Store Worth? The 2026 Valuation Guide",
     description: "The exact formula buyers use to value Shopify and dropshipping stores in 2026 — SDE multiples, what moves them up or down, and a worked example.",
