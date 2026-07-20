@@ -7,6 +7,14 @@
    ============================================================ */
 window.DEXITS_POSTS = [
   {
+    slug: "how-to-add-value-before-selling-a-store",
+    title: "How To Add Value Before Selling A Store: Quick Wins That Raise Your Multiple",
+    description: "How to add value before selling a store: quick wins Shopify and dropshipping owners can ship in weeks to raise the multiple buyers will actually pay.",
+    tag: "Exits",
+    date: "2026-07-20",
+    minutes: 7
+  },
+  {
     slug: "seller-discretionary-earnings-explained",
     title: "Seller Discretionary Earnings Explained: How Buyers Value Your Store",
     description: "Seller discretionary earnings explained for Shopify owners: what SDE is, how it differs from profit, which add-backs count, and why it sets your sale price.",
