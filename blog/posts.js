@@ -7,6 +7,14 @@
    ============================================================ */
 window.DEXITS_POSTS = [
   {
+    slug: "what-buyers-look-for-in-a-shopify-store",
+    title: "What Buyers Look For In A Shopify Store: The Acquisition Checklist, Decoded",
+    description: "What buyers look for in a Shopify store, decoded: verifiable earnings, resilient traffic, owner-free operations, and the risk flags that shrink offers.",
+    tag: "Due Diligence",
+    date: "2026-07-21",
+    minutes: 6
+  },
+  {
     slug: "how-to-add-value-before-selling-a-store",
     title: "How To Add Value Before Selling A Store: Quick Wins That Raise Your Multiple",
     description: "How to add value before selling a store: quick wins Shopify and dropshipping owners can ship in weeks to raise the multiple buyers will actually pay.",
