@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Get your instant store valuation | Dexits</title>
-<meta name="description" content="Connect where you are — valuing to sell, looking to buy, or just curious — and get a real, data-backed range.">
+<title>Talk to the Dexits team | Dexits</title>
+<meta name="description" content="Tell us about your store and your goals. This form sends an enquiry to our team; it does not calculate a valuation.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,21 +34,21 @@
     <a href="index.html">Home</a>
     <a href="blog/index.html" style="color:var(--em-bright)">Blog</a>
   </nav>
-  <a class="btn btn-primary" href="https://apps.shopify.com/dexits">Get Your Instant Valuation →</a>
+  <a class="btn btn-primary" href="https://apps.shopify.com/dexits">Install on Shopify →</a>
 </div></header>
 <div class="lf-wrap">
   <div class="lf-card" id="card">
-    <h1>Get your instant store valuation</h1>
-    <p class="sub">Connect where you are — valuing to sell, looking to buy, or just curious — and get a real, data-backed range.</p>
+    <h1>Talk to the Dexits team</h1>
+    <p class="sub">Tell us about your store and your goals. This form sends an enquiry to our team; it does not calculate a valuation.</p>
     <form id="leadForm">
       <label>Email<input type="email" name="email" required placeholder="you@company.com"></label>
       <label>Shopify store URL<input type="text" name="url" placeholder="yourstore.myshopify.com"></label>
       <label>I want to…<select name="intent"><option>Value my store to sell</option><option>Buy a store</option><option>Just exploring</option></select></label>
-      <button class="btn btn-primary" type="submit">Get My Valuation →</button>
-      <p class="lf-fine">No spam. Unsubscribe anytime.</p>
+      <button class="btn btn-primary" type="submit">Send enquiry →</button>
+      <p class="lf-fine">We will use these details to respond to your enquiry.</p>
     </form>
   </div>
-  <div class="lf-card lf-ok" id="ok"><h1>Thanks — you're in ✓</h1><p class="sub">Done. Your valuation range is on its way.</p></div>
+  <div class="lf-card lf-ok" id="ok"><h1>Thanks — you're in ✓</h1><p class="sub">Your enquiry has been received. The Dexits team will review it. To explore the app, install Dexits through Shopify.</p></div>
 </div>
 <script>(function(){var P={site:"dexits.com",category:"both",slug:"get-started",path:location.pathname};
 function send(t){try{var d=JSON.stringify(Object.assign({},P,{type:t}));(navigator.sendBeacon&&navigator.sendBeacon('/api/track',new Blob([d],{type:'application/json'})))||fetch('/api/track',{method:'POST',headers:{'content-type':'application/json'},body:d,keepalive:true});}catch(e){}}
@@ -58,11 +58,11 @@ document.addEventListener('click',function(e){var a=e.target.closest('[data-cta]
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();var f=e.target,btn=f.querySelector('button');btn.textContent='Sending…';
   var fd=new FormData(f),email=fd.get('email'),extra={};fd.forEach(function(v,k){if(k!=='email')extra[k]=v;});
-  fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({site:"dexits.com",category:"both",form_type:"valuation",email:email,extra:extra,path:location.pathname})})
+  fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({site:"dexits.com",category:"both",form_type:"enquiry",email:email,extra:extra,path:location.pathname})})
   .then(function(r){return r.json();}).then(function(j){
     if(j.ok){document.getElementById('card').style.display='none';document.getElementById('ok').style.display='block';}
     else{btn.textContent='Try again';alert(j.error||'Something went wrong');}
-  }).catch(function(){btn.textContent="Get My Valuation"+' →';alert('Network error — please retry');});
+  }).catch(function(){btn.textContent="Send enquiry"+' →';alert('Network error — please retry');});
 });
 </script>
 </body></html>
