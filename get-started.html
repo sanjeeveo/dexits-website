@@ -45,7 +45,7 @@
       <label>Shopify store URL<input type="text" name="url" placeholder="yourstore.myshopify.com"></label>
       <label>I want to…<select name="intent"><option>Value my store to sell</option><option>Interested in future buyer access</option><option>Just exploring</option></select></label>
       <button class="btn btn-primary" type="submit">Send enquiry →</button>
-      <p class="lf-fine">We will use these details to respond to your enquiry. Buyer enquiries register interest in future access; this form does not offer an available business or transaction service.</p>
+      <p class="lf-fine">We will use these details to respond to your enquiry. Buyer enquiries register interest in future access; this form does not offer an available business or transaction service. You can also email <a href="mailto:info@emv.io">info@emv.io</a>.</p>
     </form>
   </div>
   <div class="lf-card lf-ok" id="ok"><h1>Thanks — you're in ✓</h1><p class="sub">Your enquiry has been received. The Dexits team will review it. To explore the app, install Dexits through Shopify.</p></div>
@@ -56,13 +56,13 @@ send('pageview');
 document.addEventListener('click',function(e){var a=e.target.closest('[data-cta],a.btn-primary,.dbs-card,.cta-box a');if(a)send('cta_click');},true);})();</script>
 <script>
 document.getElementById('leadForm').addEventListener('submit',function(e){
-  e.preventDefault();var f=e.target,btn=f.querySelector('button');btn.textContent='Sending…';
+  e.preventDefault();var f=e.target,btn=f.querySelector('button');if(btn.disabled)return;btn.disabled=true;btn.textContent='Sending…';
   var fd=new FormData(f),email=fd.get('email'),extra={};fd.forEach(function(v,k){if(k!=='email')extra[k]=v;});
   fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({site:"dexits.com",category:"both",form_type:"enquiry",email:email,extra:extra,path:location.pathname})})
   .then(function(r){return r.json();}).then(function(j){
     if(j.ok){document.getElementById('card').style.display='none';document.getElementById('ok').style.display='block';}
-    else{btn.textContent='Try again';alert(j.error||'Something went wrong');}
-  }).catch(function(){btn.textContent="Send enquiry"+' →';alert('Network error — please retry');});
+    else{btn.disabled=false;btn.textContent='Try again';alert(j.error||'Something went wrong. Please email info@emv.io.');}
+  }).catch(function(){btn.disabled=false;btn.textContent="Send enquiry"+' →';alert('We could not confirm delivery. Please email info@emv.io or retry.');});
 });
 </script>
 </body></html>

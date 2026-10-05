@@ -13,23 +13,29 @@ export async function onRequestOptions() {
   return new Response(null, { headers: cors });
 }
 export async function onRequestPost({ request, env, waitUntil }) {
+  if (!env.DB) return json({ ok: false, error: 'Enquiry storage is unavailable. Please email info@emv.io.' }, 503);
   let b = {};
-  try { b = await request.json(); } catch (e) { return json({ ok: false, error: 'bad request' }, 400); }
-  const email = (b.email || '').trim();
-  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ ok: false, error: 'valid email required' }, 400);
   try {
-    if (env.DB) {
+    const body = await request.text();
+    if (body.length > 8192) return json({ ok: false, error: 'Enquiry is too long.' }, 413);
+    b = JSON.parse(body);
+  } catch (e) { return json({ ok: false, error: 'bad request' }, 400); }
+  if (!b || typeof b !== 'object' || Array.isArray(b)) return json({ ok: false, error: 'bad request' }, 400);
+  const field = (value, length) => typeof value === 'string' ? value.trim().slice(0, length) : '';
+  const email = typeof b.email === 'string' ? b.email.trim() : '';
+  if (!email || email.length > 160 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ ok: false, error: 'valid email required' }, 400);
+  const extra = b.extra && typeof b.extra === 'object' && !Array.isArray(b.extra) ? b.extra : {};
+  if (JSON.stringify(extra).length > 1000) return json({ ok: false, error: 'Enquiry details are too long.' }, 400);
+  try {
       const ts = Date.now();
-      await env.DB.prepare(
+      await env.DB.batch([env.DB.prepare(
         'INSERT INTO leads (ts, site, category, slug, form_type, email, name, extra) VALUES (?,?,?,?,?,?,?,?)'
-      ).bind(ts, (b.site || '').slice(0, 80), (b.category || '').slice(0, 20), (b.slug || '').slice(0, 120),
-        (b.form_type || '').slice(0, 40), email.slice(0, 160), (b.name || '').slice(0, 120),
-        JSON.stringify(b.extra || {}).slice(0, 1000)).run();
-      await env.DB.prepare(
+      ).bind(ts, field(b.site, 80), field(b.category, 20), field(b.slug, 120),
+        field(b.form_type, 40), email, field(b.name, 120), JSON.stringify(extra)),
+      env.DB.prepare(
         'INSERT INTO events (ts, site, category, slug, type, ref, path) VALUES (?,?,?,?,?,?,?)'
-      ).bind(ts, (b.site || '').slice(0, 80), (b.category || '').slice(0, 20), (b.slug || '').slice(0, 120),
-        'form_submit', '', (b.path || '').slice(0, 200)).run();
-    }
+      ).bind(ts, field(b.site, 80), field(b.category, 20), field(b.slug, 120),
+        'form_submit', '', field(b.path, 200))]);
   } catch (e) { return json({ ok: false, error: 'server error' }, 500); }
   // Fire-and-forget lead notification (Telegram + email) via the central notifier.
   try {
